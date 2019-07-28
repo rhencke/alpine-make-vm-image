@@ -1,0 +1,10 @@
+#!/bin/sh
+sudo ../alpine-make-vm-image \
+        --image-format raw \
+        --image-size 1G \
+        --repositories-file repositories \
+        --packages "$(cat packages)" \
+        --script-chroot \
+        disk.raw -- ./configure.sh
+tar --format=oldgnu -Sczf alpine-gcp-$(date +%Y-%m-%d).tar.gz disk.raw
+sudo rm disk.raw

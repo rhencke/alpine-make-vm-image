@@ -1,0 +1,3 @@
+#!/bin/sh
+gsutil cp $1 gs://robspw/images
+gcloud compute images create ${1%.tar.gz} --source-uri gs://robspw/images/$1
